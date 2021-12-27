@@ -1,19 +1,19 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Homepage from '@pages/Home'
+import Tagspage from '@pages/Tags'
 
-const Home: NextPage = () => {
+const Tags: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Home</title>
+        <title>Tags</title>
         <meta name="home page" content="Home" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Homepage />
+      <Tagspage />
     </div>
   )
 }
 
-export default Home
+export default Tags
