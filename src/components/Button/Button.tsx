@@ -19,6 +19,7 @@ const NormalButton = styled(Button)<ButtonProps>(({ theme }) => ({
 const OutlinedButton = styled(Button)<ButtonProps>(({ theme }) => ({
   textTransform: 'capitalize',
   color: theme.palette.primary.light,
+  fontSize: '12px',
   backgroundColor: theme.palette.primary.main,
   border: `1px solid ${theme.palette.primary.light}`,
   borderRadius: '20px',
@@ -32,6 +33,7 @@ const OutlinedButton = styled(Button)<ButtonProps>(({ theme }) => ({
 const ContainedButton = styled(Button)<ButtonProps>(({ theme }) => ({
   textTransform: 'capitalize',
   color: theme.palette.primary.main,
+  fontSize: '12px',
   backgroundColor: theme.palette.primary.light,
   border: '1px solid transparent',
   borderRadius: '20px',

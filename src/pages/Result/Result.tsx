@@ -18,10 +18,9 @@ export default function Result() {
   const isEmpty = data?.[0]?.length === 0
   const isReachingEnd =
     isEmpty || (data && data[data.length - 1]?.length < Number(pageSize))
+  const isLoading = !data && !error
 
   if (error) return <Typography>Error fetching data</Typography>
-  const isLoading = !data && !error
-  console.log(results)
 
   return (
     <Box>
