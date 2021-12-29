@@ -4,12 +4,16 @@ import { FormControl } from '@mui/material'
 
 const Input = styled(InputBase)<InputBaseProps>(({ theme }) => ({
   fontFamily: 'Ubuntu',
+  height: '60px',
   color: theme.palette.primary.light,
   border: '3px solid rgba(255, 255, 255, 0.5)',
   borderRadius: '6px',
   padding: '20px 18px 19px',
   '&.Mui-focused': {
     borderColor: theme.palette.secondary.main,
+  },
+  '&.MuiInputBase-root': {
+    fontSize: '14px',
   },
 }))
 

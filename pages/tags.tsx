@@ -7,7 +7,7 @@ const Tags: NextPage = () => {
     <div>
       <Head>
         <title>Tags</title>
-        <meta name="home page" content="Home" />
+        <meta name="tags page" content="Tags" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

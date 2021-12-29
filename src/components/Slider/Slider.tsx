@@ -42,6 +42,7 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
     display: 'none',
   },
   '& .MuiSlider-markLabel': {
+    marginTop: '4px',
     color: '#757575',
     '&[data-index="0"]': {
       left: '0.5% !important',
@@ -52,7 +53,7 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
   },
   '& .MuiSlider-marked': {
     '&:last-child': {
-      left: '97%',
+      left: '7%',
     },
   },
   '& .MuiSlider-thumb': {
@@ -69,13 +70,13 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
   },
 }))
 
-const CustomizedSlider = () => {
+const CustomizedSlider = ({ ...props }) => {
   return (
     <StyledSlider
       valueLabelDisplay="off"
       aria-label="slider"
-      defaultValue={3}
       marks={marks}
+      {...props}
     />
   )
 }

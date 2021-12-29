@@ -1,4 +1,4 @@
-import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { ThemeProvider, createTheme, withStyles } from '@mui/material/styles'
 
 const theme = createTheme({
   typography: {
@@ -32,4 +32,4 @@ const theme = createTheme({
   },
 })
 
-export { theme, ThemeProvider }
+export { theme, ThemeProvider, withStyles }

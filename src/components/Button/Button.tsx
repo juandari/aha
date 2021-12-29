@@ -5,6 +5,7 @@ import { HTMLAttributes } from 'react'
 const NormalButton = styled(Button)<ButtonProps>(({ theme }) => ({
   textTransform: 'uppercase',
   color: theme.palette.primary.main,
+  fontWeight: 'bold',
   backgroundColor: theme.palette.primary.light,
   padding: '8px 10px',
   border: '1px solid transparent',
@@ -45,16 +46,21 @@ const ContainedButton = styled(Button)<ButtonProps>(({ theme }) => ({
 interface CustomizedButtonProps extends HTMLAttributes<HTMLButtonElement> {
   variant: 'normal' | 'outlined' | 'contained'
   children: React.ReactNode
+  width: string
 }
 
 export default function CustomizedButton({
   variant,
   children,
   onClick,
+  width,
 }: CustomizedButtonProps) {
   if (variant === 'contained') {
     return (
-      <ContainedButton onClick={onClick} sx={{ fontFamily: 'Open Sans' }}>
+      <ContainedButton
+        onClick={onClick}
+        sx={{ fontFamily: 'Open Sans', width }}
+      >
         {children}
       </ContainedButton>
     )
@@ -62,14 +68,14 @@ export default function CustomizedButton({
 
   if (variant === 'outlined') {
     return (
-      <OutlinedButton onClick={onClick} sx={{ fontFamily: 'Open Sans' }}>
+      <OutlinedButton onClick={onClick} sx={{ fontFamily: 'Open Sans', width }}>
         {children}
       </OutlinedButton>
     )
   }
 
   return (
-    <NormalButton onClick={onClick} sx={{ fontFamily: 'Ubuntu' }}>
+    <NormalButton onClick={onClick} sx={{ fontFamily: 'Ubuntu', width }}>
       {children}
     </NormalButton>
   )
