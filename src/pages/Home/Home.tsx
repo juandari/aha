@@ -1,10 +1,13 @@
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { ChangeEvent, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { Button, Input, Slider } from '@components'
-import { Box, Divider, Grid, Typography } from '@mui/material'
+import { Divider, Grid, Typography } from '@mui/material'
 import IconLogo from '@icons/IconLogo'
-import IconNavi from '@icons/IconNavi'
+import Friends from './friends/Friends'
+import Navbar from 'src/components/Navbar'
 
 /**
  * * the slider label 3 correspond to value 6 (3 * 2), 6 -> 12, and so on.
@@ -21,6 +24,8 @@ const sliderValueMapping: { [key: number]: number } = {
 
 const Home = () => {
   const router = useRouter()
+  const theme = useTheme()
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('xl'))
 
   const [pageSize, setPageSize] = useState(30)
   const [sliderValue, setSliderValue] = useState(80)
@@ -42,12 +47,25 @@ const Home = () => {
   }
 
   return (
-    <form>
-      <Box sx={{ px: '20px', py: '24px' }}>
+    <Grid container>
+      {/* CONTENT */}
+      <Grid
+        item
+        xs={12}
+        xl={8}
+        sx={{
+          px: '20px',
+          py: isLargeScreen ? '54px' : '24px',
+          pr: isLargeScreen ? '45px' : '20px',
+          pl: isLargeScreen ? '210px' : '20px',
+        }}
+      >
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <IconLogo />
-          </Grid>
+          {!isLargeScreen && (
+            <Grid item xs={12}>
+              <IconLogo />
+            </Grid>
+          )}
           <Grid item xs={12}>
             <Typography sx={{ fontSize: '24px' }} color="primary.light">
               Search
@@ -68,7 +86,7 @@ const Home = () => {
               # Of Results Per Page
             </Typography>
           </Grid>
-          <Grid item xs={12} sx={{}}>
+          <Grid item xs={12}>
             <Typography
               component="span"
               sx={{ fontSize: '48px' }}
@@ -87,41 +105,40 @@ const Home = () => {
               min={0}
               max={100}
               step={20}
+              sx={{ fontSize: isLargeScreen ? '16px' : '14px' }}
             />
             <Divider
               sx={{
                 backgroundColor: 'rgba(225, 225, 225, 0.1)',
-                mt: '190px',
-                mb: '64px',
+                mt: isLargeScreen ? '20px' : '190px',
+                mb: isLargeScreen ? '355px' : '64px',
               }}
             />
           </Grid>
           <Grid item xs={12}>
-            <Button variant="normal" width="335px" onClick={handleClickSearch}>
+            <Button
+              variant="normal"
+              width={isLargeScreen ? '343px' : '335px'}
+              onClick={handleClickSearch}
+            >
               Search
             </Button>
           </Grid>
         </Grid>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          position: 'fixed',
-          gap: '52px',
-          alignItems: 'center',
-          justifyContent: 'center',
-          bgcolor: '#2a2a2a',
-          width: '100vw',
-          height: '66px',
-          mt: '15px',
-        }}
-      >
-        <IconNavi color="white" />
-        <Box onClick={() => router.push('/tags')}>
-          <IconNavi />
-        </Box>
-      </Box>
-    </form>
+      </Grid>
+
+      {/* FOLLOWERS/FOLLOWING */}
+      {isLargeScreen && (
+        <Grid item xl={4} sx={{ pl: '85px' }}>
+          <Friends />
+        </Grid>
+      )}
+
+      {/* NAVBAR */}
+      <Grid item xs={12} xl={2}>
+        <Navbar />
+      </Grid>
+    </Grid>
   )
 }
 

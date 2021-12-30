@@ -44,6 +44,7 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
   '& .MuiSlider-markLabel': {
     marginTop: '4px',
     color: '#757575',
+    fontSize: theme.breakpoints.up('xl') ? '16px' : '14px',
     '&[data-index="0"]': {
       left: '0.5% !important',
     },

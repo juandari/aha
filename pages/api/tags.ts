@@ -65,6 +65,15 @@ const mockData = [
   },
 ]
 
+for (let i = 10; i < 30; i++) {
+  mockData.push({
+    id: i,
+    title: 'Tag',
+    subtitle: 'Tag',
+    noOfQuestions: 50,
+  })
+}
+
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Tag[]>

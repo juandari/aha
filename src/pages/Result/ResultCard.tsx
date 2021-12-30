@@ -4,20 +4,38 @@ import {
   Typography,
   CardContent,
   Skeleton,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { Item } from 'pages/api/result'
 
 interface Props {
   item?: Item
 }
 
+const StyledCard = styled(Card)(({ theme }) => ({
+  '& .MuiCardContent-root': {
+    paddingBottom: '0',
+  },
+}))
+
 export default function ResultCard({ item }: Props) {
+  const theme = useTheme()
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('xl'))
+
   return (
-    <Card sx={{ maxWidth: 335, border: 'none', bgcolor: 'primary.main' }}>
+    <StyledCard
+      sx={{
+        maxWidth: isLargeScreen ? 219 : 335,
+        border: 'none',
+        bgcolor: 'primary.main',
+      }}
+    >
       {item ? (
         <CardMedia
           component="img"
-          height="222"
+          height={isLargeScreen ? '146' : '222'}
           image={item.imageUrl}
           sx={{ mt: '20px' }}
         />
@@ -25,8 +43,8 @@ export default function ResultCard({ item }: Props) {
         <Skeleton
           sx={{ bgcolor: 'grey.200' }}
           variant="rectangular"
-          width={335}
-          height={222}
+          width={isLargeScreen ? 219 : 335}
+          height={isLargeScreen ? 146 : 222}
         />
       )}
       <CardContent sx={{ bgcolor: 'primary.main', p: 0, pt: '20px' }}>
@@ -45,6 +63,6 @@ export default function ResultCard({ item }: Props) {
           <Skeleton sx={{ bgcolor: 'grey.200' }} variant="text" />
         )}
       </CardContent>
-    </Card>
+    </StyledCard>
   )
 }
